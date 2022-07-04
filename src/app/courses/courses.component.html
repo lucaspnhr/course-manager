@@ -1,0 +1,23 @@
+<div class="form-group row mb-3">
+  <label class="col-2 col-form-label">Filtered By: </label>
+  <div class="col-10">
+    <input [(ngModel)]="filter" type="text" class="form-control">
+  </div>
+</div>
+
+
+<div class="container d-flex gap-md-4 gap-sm-1">
+    <div class="card" style="width: 18rem;" *ngFor="let course of filteredCourses;">
+        <img [src]="course.imageUrl" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{course.name}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><span class="fw-bold">Price: </span>{{ course.price | toCurency}}</li>
+          <li class="list-group-item"><span class="fw-bold">Release Date: </span>{{ course.releaseDate | date: "dd/MM/yyyy" }}</li>
+          <li class="list-group-item"><span class="fw-bold">Duration:</span> {{ (course.duration / 60).toFixed(2) }}h</li>
+          <li class="list-group-item"><span class="fw-bold"></span><app-star [rating]="course.rating"></app-star></li>
+        </ul>
+    
+    </div>
+</div>

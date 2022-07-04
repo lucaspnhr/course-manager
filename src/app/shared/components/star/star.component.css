@@ -1,0 +1,11 @@
+*{
+    margin : 0;
+    padding: 0;
+    
+}
+.crop{
+    overflow: hidden;
+}
+.fa-yellow{
+    color:rgba(255, 238, 0, 0.76);
+}
