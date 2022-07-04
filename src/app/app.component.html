@@ -7,23 +7,8 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>{{ title }}</h1>
-  <h3>User Information</h3>
-  <dl>
-    <dt>id</dt>
-    <dd>{{ mainUser.id }}</dd>
-    <dt>name</dt>
-    <dd>{{ mainUser.name}}</dd>
-    <dt>email</dt>
-    <dd>{{ mainUser.email }}</dd>
-  </dl>
-
-  <br><br><br>
-
-  <input type="text" [ngModel]="mainUser.name" name="name"> <!-- One Way data biding: here we just can see the variable's value -->  
-  <input type="text" [(ngModel)]="mainUser.email" name="email"> <!-- Two Way data biding: here we can not just see the variable's value  but  change its value, that's gonna change all reference for that variable-->  
-
-
-
+  <div class="container">
+    <app-course></app-course>
+  </div>
 </body>
 </html>
