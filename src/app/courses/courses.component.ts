@@ -3,7 +3,6 @@ import { CourseService } from './courses.service';
 import { Course } from './models/course';
 
 @Component({
-  selector: 'app-course',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
@@ -23,7 +22,6 @@ export class CoursesComponent implements OnInit {
 
   set filter(query:string){
     this._filter = query;
-
     this.filteredCourses = this._coursers.filter((course:Course) => course.name.toLowerCase().includes(this._filter.toLowerCase()));
   }
 

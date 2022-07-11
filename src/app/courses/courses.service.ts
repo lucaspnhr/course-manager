@@ -1,13 +1,48 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { Course } from "./models/course";
 
 @Injectable({ // promote this class to be available to dependency injection
     providedIn:"root" // it's going to be provide in the root module
 })
 export class CourseService{
-    getAll():Course[]{
-        return COURSES;
+
+  private baseUrl:string = "http://localhost:8080/api/v1.0/course";
+
+  constructor(private httpCliente:HttpClient){
+
+  }
+
+    save(course: Course):Observable<Course> {
+      return this.httpCliente.post<Course>(`${this.baseUrl}/save`, course);
     }
+
+    uploadImage(imageFile:File, courseId:number){
+      const formData = new FormData();
+      formData.append('image', imageFile, imageFile.name);
+      formData.append('courseId', `${courseId}`);
+      this.httpCliente.post(`${this.baseUrl}/image/save`, formData, { observe: 'response' })
+      .subscribe((response) => {
+        if (response.status === 200) {
+          console.log(response);
+        } else {
+          console.log('Image not uploaded due to some error!');
+        }
+      });
+    }
+
+    getById(courseId: number): Course| null | undefined {
+        return exists(courseId) ? COURSES.find((course:Course) => course.id === courseId) : null;
+    }
+    getAll():Observable<Course[]>{
+        return this.httpCliente.get<Course[]>(this.baseUrl);
+    }
+
+}
+
+function exists(courseId:number):boolean{
+  return COURSES.some((course:Course) => course.id === courseId);
 }
 
 let COURSES:Course[] = [

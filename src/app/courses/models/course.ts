@@ -1,5 +1,5 @@
 export class Course{
-    id:number;
+    id:number = 0;
     name:string;
     imageUrl:string;
     price:number;
@@ -9,8 +9,7 @@ export class Course{
     rating:number;
     releaseDate:Date;
 
-    constructor(id:number, name:string, imageUrl:string, price:number,code:string, duration:number,rating:number,releaseDate:string){
-        this.id = id;
+    constructor(name:string, imageUrl:string, price:number,code:string, duration:number,rating:number,releaseDate:string){
         this.name = name;
         this.imageUrl = imageUrl;
         this.price = price;
