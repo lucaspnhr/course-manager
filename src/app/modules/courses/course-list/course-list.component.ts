@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from './courses.service';
-import { Course } from './models/course';
+import { CourseService } from '../service/course.service';
+import { Course } from '../models/course';
 
 @Component({
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  templateUrl: './course-list.component.html',
+  styleUrls: ['./course-list.component.css']
 })
-export class CoursesComponent implements OnInit {
+export class CourseListComponent implements OnInit {
 
   _filter:string = "";
   _coursers:Course[] = [];  
@@ -16,7 +16,18 @@ export class CoursesComponent implements OnInit {
   constructor(private courseService:CourseService) { }
 
   ngOnInit(): void {
-    this._coursers = this.courseService.getAll();
+    this.retriveAll();
+  }
+
+  retriveAll(){
+    this.courseService.getAll().subscribe({
+      next: courses => {
+        this._coursers =  courses;
+      },
+      error: err =>{
+        console.log(err);
+      }
+    });
     this.filteredCourses = this._coursers;
   }
 

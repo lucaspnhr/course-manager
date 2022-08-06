@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Course } from "./models/course";
+import { Course } from "../models/course";
 
 @Injectable({ // promote this class to be available to dependency injection
     providedIn:"root" // it's going to be provide in the root module
